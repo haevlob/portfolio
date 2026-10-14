@@ -3,6 +3,7 @@ const path = require('node:path');
 const { pathToFileURL } = require('node:url');
 const { chromium } = require('playwright');
 const sharp = require('sharp');
+const auraV2 = require('./aura-v2.cjs');
 
 const root = path.resolve(__dirname, '..');
 const badge = '<div class="concept">ДИЗАЙН-КОНЦЕПЦИЯ / РЕНАТА</div>';
@@ -34,13 +35,17 @@ const css = `
 `;
 
 (async () => {
-  const html = `<!doctype html><html lang="ru"><head><meta charset="utf-8"><link rel="stylesheet" href="../assets/fonts.css"><style>${css}</style></head><body>${slides.map(([key, num, type, content]) => `<article class="card ${key} ${type}" id="${key}-${num}">${content}</article>`).join('')}</body></html>`;
+  const currentSlides = [...slides.filter(([key]) => key !== 'aura'), ...auraV2.slides];
+  const selectedSeries = process.argv[2];
+  const exports = selectedSeries ? currentSlides.filter(([key]) => key === selectedSeries) : currentSlides;
+  if (!exports.length) throw new Error(`Unknown series: ${selectedSeries}`);
+  const html = `<!doctype html><html lang="ru"><head><meta charset="utf-8"><link rel="stylesheet" href="../assets/fonts.css"><style>${css}\n${auraV2.css}</style></head><body>${currentSlides.map(([key, num, type, content]) => `<article class="card ${key} ${type}" id="${key}-${num}">${content}</article>`).join('')}</body></html>`;
   await fs.writeFile(path.join(__dirname, 'cards-preview.html'), html, 'utf8');
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage({ viewport: { width: 960, height: 1280 }, deviceScaleFactor: 1 });
   await page.goto(pathToFileURL(path.join(__dirname, 'cards-preview.html')).href);
   await page.evaluate(async () => { await document.fonts.ready; await Promise.all([...document.images].map(i => i.decode())); });
-  for (const [key, num] of slides) {
+  for (const [key, num] of exports) {
     const dir = path.join(root, 'assets', 'marketplace', key);
     await fs.mkdir(dir, { recursive: true });
     const file = path.join(dir, `${String(num).padStart(2, '0')}.png`);

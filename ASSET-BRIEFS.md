@@ -20,3 +20,9 @@ Use case: product-mockup. Create one extraordinarily polished photorealistic pro
 
 Set NODE_PATH to the installed bundle containing playwright and sharp, then run node tools/build-marketplace.cjs. The script generates PNGs, WebP gallery images, and WebP thumbnails. Product images are retained in assets/marketplace/source.
 
+## AURA revision 2 / 14 October 2026
+
+The headphone series now uses a separate music-poster art direction, implemented in `tools/aura-v2.cjs`: cobalt blue #2139e9, acid yellow #e5fc68, heavy sans-serif typography, macro detail, equalizer graphics, a numbered product diagram, and a record/ticket composition. All five cards remain 900 × 1200 px and retain the same original headphone product image. No new native image generation was used for this revision; layout and text were composed deterministically in HTML/CSS. The original AURA exports remain available in the repository for rollback but are not used by the current page.
+
+Rebuild just the current headphones with `node tools/build-marketplace.cjs aura-v2`, then run `node tools/build-site.cjs`, `node tools/package-portfolio.cjs`, and `python tools/package-downloads.py`. The page and gallery map the stable `project=aura` URL to `assets/marketplace/aura-v2/`.
+

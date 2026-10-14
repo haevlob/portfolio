@@ -18,11 +18,12 @@ note = ('Портфолио товарной инфографики — Рена
 (delivery / 'О портфолио.txt').write_text(note, encoding='utf-8-sig')
 checks = []
 for key in ['ember', 'lume', 'aura']:
+    source = assets / ('aura-v2' if key == 'aura' else key)
     dest = delivery / key.upper()
     dest.mkdir(exist_ok=True)
-    with ZipFile(assets / key / f'{key}-series.zip', 'w', ZIP_DEFLATED) as archive:
+    with ZipFile(source / f'{key}-series.zip', 'w', ZIP_DEFLATED) as archive:
         for num in range(1, 6):
-            src = assets / key / f'{num:02d}.png'
+            src = source / f'{num:02d}.png'
             with Image.open(src) as im:
                 assert im.size == (900, 1200), (src, im.size)
             name = f'Renata-{key}-{num:02d}.png'

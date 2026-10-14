@@ -1,0 +1,47 @@
+{
+  "version": 2,
+  "product_source": "../source/headphones.png",
+  "method": "HTML/CSS layout with preserved original product image",
+  "cards": [
+    {
+      "slide": 1,
+      "dimensions": [
+        900,
+        1200
+      ],
+      "sha256": "e0d9fd4ba5f6a138cfd6e9ff293a4632ca008a5231df869d3cb2621980a38492"
+    },
+    {
+      "slide": 2,
+      "dimensions": [
+        900,
+        1200
+      ],
+      "sha256": "46ae4aac5eeacd023e9f567a3eb1d32f73313dfbc273f0ebe791092ff3038133"
+    },
+    {
+      "slide": 3,
+      "dimensions": [
+        900,
+        1200
+      ],
+      "sha256": "ec01a9591034572c4c0f512f345dada5435c157c7a36c7a474e9d61c06407abc"
+    },
+    {
+      "slide": 4,
+      "dimensions": [
+        900,
+        1200
+      ],
+      "sha256": "85df89ef78b0411aaa37d5db57e498a178906691a0898c72fa3fcc4496711f15"
+    },
+    {
+      "slide": 5,
+      "dimensions": [
+        900,
+        1200
+      ],
+      "sha256": "2842383f595141ac8f1bfa10429f84e1b767386e20f2c6b86f85796f3f07d7e0"
+    }
+  ]
+}
