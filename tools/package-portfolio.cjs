@@ -1,0 +1,21 @@
+const fs=require('node:fs/promises');
+const path=require('node:path');
+const {pathToFileURL}=require('node:url');
+const {chromium}=require('playwright');
+const sharp=require('sharp');
+const root=path.resolve(__dirname,'..');
+const qa=path.resolve(root,'../portfolio-qa-20261014');
+(async()=>{
+const browser=await chromium.launch({headless:true});
+const page=await browser.newPage({viewport:{width:1680,height:1500},deviceScaleFactor:1});
+const cards=['ember','lume','aura'].flatMap(key=>Array.from({length:5},(_,i)=>[key,i+1]));
+const html=`<!doctype html><style>*{box-sizing:border-box}body{margin:0;padding:20px;display:grid;grid-template-columns:repeat(5,1fr);gap:14px;background:#f6f5ef;font:12px Arial;color:#262821}img{width:100%;height:auto}figure{margin:0}figcaption{padding:8px 0;text-align:center}</style>${cards.map(([key,n])=>`<figure><img src="../assets/marketplace/${key}/0${n}.png"><figcaption>${key.toUpperCase()} / 0${n}</figcaption></figure>`).join('')}`;
+const overview=path.join(__dirname,'cards-overview.html');await fs.writeFile(overview,html);
+await page.goto(pathToFileURL(overview).href);await page.evaluate(()=>Promise.all([...document.images].map(i=>i.decode())));
+await fs.mkdir(qa,{recursive:true});await page.screenshot({path:path.join(qa,'all-15-cards.png'),fullPage:true});
+const hero=await browser.newPage({viewport:{width:1200,height:630},deviceScaleFactor:1});
+await hero.goto('http://127.0.0.1:8767/');await hero.evaluate(async()=>{await document.fonts.ready;await Promise.all([...document.querySelectorAll('.hero img')].map(i=>i.decode()))});
+await hero.addStyleTag({content:'.site-header{display:none}.hero{padding-top:24px;padding-bottom:24px;min-height:630px}.hero-art{height:560px}.hero-bottom{display:none}.hero h1{font-size:94px}'});
+const shot=await hero.screenshot();await sharp(shot).jpeg({quality:88}).toFile(path.join(root,'assets/marketplace/social-preview.jpg'));
+await browser.close();console.log('Created 15-card overview and social preview');
+})().catch(e=>{console.error(e);process.exitCode=1});
