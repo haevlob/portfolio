@@ -1,0 +1,46 @@
+{
+  "version": 3,
+  "method": "Built-in Imagegen product edit plus HTML/CSS typography and layouts",
+  "cards": [
+    {
+      "slide": 1,
+      "dimensions": [
+        900,
+        1200
+      ],
+      "sha256": "17490351306881c7dc6af6d7d452978a9741ba18955b466d6abc32f8029b070c"
+    },
+    {
+      "slide": 2,
+      "dimensions": [
+        900,
+        1200
+      ],
+      "sha256": "b83b76943cec5852292b09b05a6b250c13e16f0957604ed4997238b98564ea0b"
+    },
+    {
+      "slide": 3,
+      "dimensions": [
+        900,
+        1200
+      ],
+      "sha256": "6f2aa74320d485cc904b6f73ce99ef1ae61adbd923ef8029a041e729fcc94ae4"
+    },
+    {
+      "slide": 4,
+      "dimensions": [
+        900,
+        1200
+      ],
+      "sha256": "ec806e2c5da266b04564e220d00d524d226eabbdbd53e43ba97dc03692caff47"
+    },
+    {
+      "slide": 5,
+      "dimensions": [
+        900,
+        1200
+      ],
+      "sha256": "773240a6e816a00bbad06608e6477c4ede0955835f8a2ffdb34f107cc4d5a190"
+    }
+  ]
+}

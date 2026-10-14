@@ -18,7 +18,7 @@ note = ('Портфолио товарной инфографики — Рена
 (delivery / 'О портфолио.txt').write_text(note, encoding='utf-8-sig')
 checks = []
 for key in ['ember', 'lume', 'aura']:
-    source = assets / ('aura-v2' if key == 'aura' else key)
+    source = assets / ('aura-v3' if key == 'aura' else key)
     dest = delivery / key.upper()
     dest.mkdir(exist_ok=True)
     with ZipFile(source / f'{key}-series.zip', 'w', ZIP_DEFLATED) as archive:

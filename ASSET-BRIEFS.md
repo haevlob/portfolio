@@ -24,5 +24,15 @@ Set NODE_PATH to the installed bundle containing playwright and sharp, then run 
 
 The headphone series now uses a separate music-poster art direction, implemented in `tools/aura-v2.cjs`: cobalt blue #2139e9, acid yellow #e5fc68, heavy sans-serif typography, macro detail, equalizer graphics, a numbered product diagram, and a record/ticket composition. All five cards remain 900 × 1200 px and retain the same original headphone product image. No new native image generation was used for this revision; layout and text were composed deterministically in HTML/CSS. The original AURA exports remain available in the repository for rollback but are not used by the current page.
 
-Rebuild just the current headphones with `node tools/build-marketplace.cjs aura-v2`, then run `node tools/build-site.cjs`, `node tools/package-portfolio.cjs`, and `python tools/package-downloads.py`. The page and gallery map the stable `project=aura` URL to `assets/marketplace/aura-v2/`.
+Revision 2 was built with `node tools/build-marketplace.cjs aura-v2` and mapped the stable `project=aura` URL to `assets/marketplace/aura-v2/`. It has been superseded by revision 3 below.
 
+
+## AURA revision 3 / 15 October 2026
+
+The user rejected the heavy music-poster treatment. The current series uses restrained audio-product art direction: mist blue and silver tones, navy, measured sans-serif typography, a new studio photograph, and calm material close-ups. Five exports remain 900 x 1200 px. Header and contact ownership remain scoped to Renata's marketplace portfolio.
+
+Studio photo: built-in Imagegen edit using the original headphones.png as the identity reference. Final source: assets/marketplace/source/headphones-studio-v3.png. Exact prompt:
+
+Use case: precise-object-edit / premium product-mockup. Reference image is the product identity anchor: preserve exactly these butter-yellow over-ear wireless headphones, their distinctive earcup shapes, leather cushions, headband, proportions, materials, and colors. Create one exquisite refined industrial-design editorial studio photograph for a luxury audio campaign. Same product only, no new product. Completely change the presentation to a cool silver-blue seamless studio environment. Headphones hover very subtly above a smooth matte silver-blue floor, with a physically realistic soft grounded shadow. Camera three-quarter front with a gentle tilt, entire product comfortably in frame, precise fine materials and soft beautiful studio light. Keep color restrained: cold mist blue backdrop, warm pale headphones, graceful ivory highlights, no electric colors. Very subtle tonal depth and realistic light falloff; no stylized shapes, no graphics, no props, no neon. Portrait composition, intended 3:4. The upper 35 percent of the image is quiet clean light blue negative space for later typography, product occupies lower 60 percent, lower side margins comfortable. The product is the clear focus, beautifully separated from background. Premium Bang-and-Olufsen-grade photographic restraint, original unbranded product. Absolutely NO text, NO logos, NO letters, NO numbers, NO watermark, NO ticket, NO stickers, NO graphic circles.
+
+Layouts are in tools/aura-v3.cjs. Rebuild with node tools/build-marketplace.cjs aura-v3. Stable project=aura links now use assets/marketplace/aura-v3/; prior versions are retained for rollback.
